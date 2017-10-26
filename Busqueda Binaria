@@ -1,0 +1,62 @@
+//Busqueda binaria
+//Id: 222946
+//Muñoz Serna J. Refugio 
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+
+int main() {
+	
+	srand(time(NULL));
+	int vector[1000], i,j, min, tam, aux;
+	
+	printf("Ingrese la cantidad de numerosa crear :   \n");
+	scanf("%d",&tam);
+	
+	
+	
+	for (i=0; i<tam; i++){
+		vector[i]= 1 + (rand()%100);
+	}
+	
+	printf("\nVector sin ordenar :  \n");
+	for (i=0; i<tam; i++){
+		printf("%d ", vector[i]);
+	}
+	
+	//Aqui lo ordena
+	for (i=0; i<tam; i++){
+		min = i;
+		for(j=i+1;j<tam; j++){
+			if (vector[j] > vector[min]){
+				min = j;
+			}
+		}
+		aux = vector[i];
+		vector[i] = vector[min];
+		vector[min] = aux;
+	}
+	
+	printf("\nVector ordenado: \n");
+	for (i=tam; i>=0; i--){
+		printf("%d ", vector[i]);
+	}
+	
+	
+	// Aqui realizamos la busqueda y pide el numero a buscar 
+	int busqueda = 0; 
+		 
+	printf("\nQue numero desea encontrar : ");
+	scanf("%d",&busqueda);
+	
+		for (i=0; i<tam; i++){
+			if(vector[i] == busqueda)
+				printf("\nEl valor que usted busca esta en la posicion %d = %d", i, vector[i]);
+	}
+  
+	return 0;
+}
+
