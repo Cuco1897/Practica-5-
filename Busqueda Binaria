@@ -1,4 +1,4 @@
-//Busqueda binaria
+/Busqueda binaria 
 //Id: 222946
 //Muñoz Serna J. Refugio 
 
@@ -11,52 +11,59 @@
 int main() {
 	
 	srand(time(NULL));
-	int vector[1000], i,j, min, tam, aux;
+	int vector[1000], i= 0, s= 0, mitad, tam, dato;
+	char band = 'F';
 	
 	printf("Ingrese la cantidad de numerosa crear :   \n");
 	scanf("%d",&tam);
-	
-	
 	
 	for (i=0; i<tam; i++){
 		vector[i]= 1 + (rand()%100);
 	}
 	
-	printf("\nVector sin ordenar :  \n");
-	for (i=0; i<tam; i++){
-		printf("%d ", vector[i]);
-	}
-	
 	//Aqui lo ordena
-	for (i=0; i<tam; i++){
-		min = i;
-		for(j=i+1;j<tam; j++){
+	int l=0, j=0, min, aux;
+	
+	for (l=0; l<tam; l++){
+		min = l;
+		for(j=l+1;j<tam; j++){
 			if (vector[j] > vector[min]){
 				min = j;
 			}
 		}
-		aux = vector[i];
-		vector[i] = vector[min];
+		aux = vector[l];
+		vector[l] = vector[min];
 		vector[min] = aux;
+}
+	for (l=0; l<tam; l++){
+		printf("%d ", vector[l]);
 	}
 	
-	printf("\nVector ordenado: \n");
-	for (i=tam; i>=0; i--){
-		printf("%d ", vector[i]);
+	printf("\nQue necesita encontrar:  ");
+	scanf("%d",&dato);
+	
+	while(i <= s){
+		mitad = (i+s) /2;
+		if (vector[mitad] == dato){
+			band = 'V';
+			break;
+		}
+		if (vector[mitad]> dato){
+			s = mitad;
+			mitad  = (i+s)/2;
+		}
+		
+		if (vector[mitad]< dato){
+			i = mitad;
+			mitad  = (i+s)/2;
+		}
 	}
 	
+	if (band == 'F')
+	printf("\nEl numero que buscas no existe");
 	
-	// Aqui realizamos la busqueda y pide el numero a buscar 
-	int busqueda = 0; 
-		 
-	printf("\nQue numero desea encontrar : ");
-	scanf("%d",&busqueda);
+	if (band == 'V')
+	printf("\nEl numero esta en la posicion %d: %d", mitad, vector [mitad]);
 	
-		for (i=0; i<tam; i++){
-			if(vector[i] == busqueda)
-				printf("\nEl valor que usted busca esta en la posicion %d = %d", i, vector[i]);
-	}
-  
 	return 0;
 }
-
